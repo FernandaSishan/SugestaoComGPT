@@ -1,0 +1,102 @@
+{
+    "projectName": "testeGPT",
+    "author": "Fernanda",
+    "ihm": {
+        "model": "PX4",
+        "width": 480,
+        "height": 272,
+        "orientation": "portrait"
+    },
+    "screens": [
+        {
+            "typeComponent": "Screen",
+            "id": "screen1",
+            "backgroundColor": "#FFFFFF",
+            "childs": [
+                {
+                    "typeComponent": "ButtonWithLabel",
+                    "id": "buttonWithLabel1",
+                    "title": "RESFRIAR",
+                    "color": "#FFF",
+                    "backgroundImage": "Blue_Buttons_Round_Edge_small.png",
+                    "fontSize": 10,
+                    "width": 170,
+                    "height": 60,
+                    "posX": 20,
+                    "posY": 20
+                },
+                {
+                    "typeComponent": "ButtonWithLabel",
+                    "id": "buttonWithLabel2",
+                    "title": "CONGELAR",
+                    "color": "#FFF",
+                    "backgroundImage": "Blue_Buttons_Round_Edge_small.png",
+                    "fontSize": 10,
+                    "width": 170,
+                    "height": 60,
+                    "posX": 200,
+                    "posY": 20
+                },
+                {
+                    "typeComponent": "TextArea",
+                    "id": "text1",
+                    "value": "Simple Field",
+                    "color": "#000000",
+                    "fontSize": 20,
+                    "posX": 380,
+                    "posY": 20
+                }
+            ]
+        },
+        {
+            "typeComponent": "Screen",
+            "id": "screen2",
+            "backgroundColor": "#FFFFFF",
+            "childs": [
+                {
+                    "typeComponent": "ButtonWithLabel",
+                    "id": "buttonWithLabel1",
+                    "title": "DEGELO",
+                    "color": "#FFF",
+                    "backgroundImage": "Blue_Buttons_Round_Edge_small.png",
+                    "fontSize": 10,
+                    "width": 170,
+                    "height": 60,
+                    "posX": 0,
+                    "posY": 0
+                },
+                {
+                    "typeComponent": "ButtonWithLabel",
+                    "id": "buttonWithLabel2",
+                    "title": "VOLTAR",
+                    "color": "#FFF",
+                    "backgroundImage": "Blue_Buttons_Round_Edge_small.png",
+                    "fontSize": 10,
+                    "width": 170,
+                    "height": 60,
+                    "posX": 0,
+                    "posY": 0
+                }
+            ]
+        },
+        {
+            "typeComponent": "Screen",
+            "id": "screen3",
+            "backgroundColor": "#FFFFFF",
+            "childs": [
+                {
+                    "typeComponent": "ButtonWithLabel",
+                    "id": "buttonWithLabel1",
+                    "title": "VOLTAR",
+                    "color": "#FFF",
+                    "backgroundImage": "Blue_Buttons_Round_Edge_small.png",
+                    "fontSize": 10,
+                    "width": 170,
+                    "height": 60,
+                    "posX": 0,
+                    "posY": 0
+                }
+            ]
+        }
+    ]
+}
