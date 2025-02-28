@@ -27,45 +27,50 @@ def save_ui(data, output_path):
         print(f"Erro ao salvar o arquivo: {e}")
 
 
-# Aplicar heurísticas básicas para melhoria do layout
+# Aplicar heurísticas básicas para melhoria do layout em todas as telas
 def apply_heuristics(ui_data):
     grid_x = 20  # Margem horizontal inicial
     grid_y = 20  # Margem vertical inicial
     padding_x = 10  # Espaço entre elementos horizontalmente
     padding_y = 10  # Espaço entre elementos verticalmente
-    max_width = ui_data.get("ihm", {}).get("width", 800)  # Largura total da tela (padrão: 800px)
 
-    screen = ui_data.get("screens", [{}])[0]
-    components = screen.get("childs", [])
+    if "screens" not in ui_data:
+        print("Erro: Nenhuma tela encontrada no JSON.")
+        return ui_data
 
-    # Ordenar os componentes por tipo para uma distribuição mais lógica
-    components.sort(key=lambda c: c.get("typeComponent", ""))
+    for screen in ui_data["screens"]:
+        max_width = ui_data.get("ihm", {}).get("width", 800)  # Largura total da tela (padrão: 800px)
+        components = screen.get("childs", [])
 
-    new_layout = []
-    current_x, current_y = grid_x, grid_y
-    row_height = 0  # Para manter alinhamento na linha
+        # Ordenar os componentes por tipo para uma distribuição mais lógica
+        components.sort(key=lambda c: c.get("typeComponent", ""))
 
-    for comp in components:
-        width = comp.get("width", 100)
-        height = comp.get("height", 50)
+        new_layout = []
+        current_x, current_y = grid_x, grid_y
+        row_height = 0  # Para manter alinhamento na linha
 
-        # Verifica se cabe na linha atual, senão pula para a próxima linha
-        if current_x + width > max_width:
-            current_x = grid_x  # Reinicia X
-            current_y += row_height + padding_y  # Pula para a próxima linha
-            row_height = 0  # Reinicia a altura máxima da linha
+        for comp in components:
+            width = comp.get("width", 100)
+            height = comp.get("height", 50)
 
-        # Atualiza a posição do componente
-        comp["posX"] = current_x
-        comp["posY"] = current_y
+            # Verifica se cabe na linha atual, senão pula para a próxima linha
+            if current_x + width > max_width:
+                current_x = grid_x  # Reinicia X
+                current_y += row_height + padding_y  # Pula para a próxima linha
+                row_height = 0  # Reinicia a altura máxima da linha
 
-        # Atualiza coordenadas para o próximo item
-        current_x += width + padding_x
-        row_height = max(row_height, height)  # Atualiza a altura da linha
+            # Atualiza a posição do componente
+            comp["posX"] = current_x
+            comp["posY"] = current_y
 
-        new_layout.append(comp)
+            # Atualiza coordenadas para o próximo item
+            current_x += width + padding_x
+            row_height = max(row_height, height)  # Atualiza a altura da linha
 
-    screen["childs"] = new_layout
+            new_layout.append(comp)
+
+        screen["childs"] = new_layout
+    
     return ui_data
 
 
@@ -114,7 +119,7 @@ def optimize_ui(file_path, output_path, api_key):
 # Execução principal
 if __name__ == "__main__":
     input_file = "C:/Users/carol/OneDrive/Documentos/Inova/GPTteste2/ide-manifest.json"  # Caminho atualizado
-    output_file = "C:/Users/carol/OneDrive/Documentos/Inova/GPTteste2/forno.json"  # Caminho atualizado
+    output_file = "C:/Users/carol/OneDrive/Documentos/Inova/GPTteste2/forno2.json"  # Caminho atualizado
 
     # Substituir a chave API por variável de ambiente para segurança
     openai_api_key = os.getenv("OPENAI_API_KEY", "chave-falsa")  # Use a variável de ambiente
